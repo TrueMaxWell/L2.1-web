@@ -21,7 +21,7 @@ public class SignInServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=utf-8");
         try {
-            response.getWriter().println(PageGenerator.getPage("index.html"));
+            response.getWriter().println(PageGenerator.getPage("signin.html"));
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (IOException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
