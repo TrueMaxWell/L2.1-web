@@ -2,7 +2,6 @@ package servlets;
 
 import accounts.AccountService;
 import accounts.UserProfile;
-import templater.PageGenerator;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,22 +20,16 @@ public class SignUpServlet extends HttpServlet {
                       HttpServletResponse response) {
 
         response.setContentType("text/html;charset=utf-8");
+        response.setStatus(HttpServletResponse.SC_OK);
 
-        try {
-            response.getWriter().println(PageGenerator.getPage("signup.html"));
-            response.setStatus(HttpServletResponse.SC_OK);
-        } catch (IOException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
     }
 
     public void doPost(HttpServletRequest request,
                        HttpServletResponse response) {
         String login = request.getParameter("login");
-        String pass = request.getParameter("pass");
+        String pass = request.getParameter("password");
 
-        UserProfile profile = new UserProfile(login, pass, login);
-        accountService.addSession(request.getSession().getId(), profile);
+        UserProfile profile = new UserProfile(login, pass);
 
         try {
 
